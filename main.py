@@ -14,7 +14,7 @@ class docCreators():
     tinpyt = 'Temp.docx'
     filenamecol = 'val_1'
     
-    def get(self):
+    def get(self, zip=False):
         # Определяем адрес корневой директории и базовые файлы
         path = os.path.dirname(os.path.abspath(__file__))
         inputfile = os.path.join(path, 'inputFiles', self.finpyt)
@@ -48,16 +48,17 @@ class docCreators():
             resfile = os.path.join(resdir, i[self.filenamecol]+'.docx')
             docsCreator(tempfile, resfile, i)
 
-        # Создаем архив с массивом документов
+        if zip:
+            # Создаем архив с массивом документов
 
 
-        arhfolder(os.path.join(path, resf),
-                session, 
-                path)
+            arhfolder(os.path.join(path, resf),
+                    session, 
+                    path)
 
 
-        # Удаляем папку с массивом документов
-        rmtree(resdir, ignore_errors=False, onerror=None)
+            # Удаляем папку с массивом документов
+            rmtree(resdir, ignore_errors=False, onerror=None)
 
 
 docCreators().get()
